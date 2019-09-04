@@ -10,7 +10,7 @@
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{{ asset('js/encryption.js')}}"></script>
-        
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -91,6 +91,8 @@
                   <button onclick="shiftDecrypt()"> shift decrypt </button>
                   <button onclick="matrixEncrypt()"> matrix encrypt </button>
                   <button onclick="matrixDecrypt()"> matrix decrypt </button>
+                  <button onclick="reverseEncrypt()"> reverse encrypt </button>
+                  <button onclick="reverseDecrypt()"> reverse decrypt </button>
                 </div>
             </div>
         </div>

@@ -57,3 +57,29 @@ function matrixDecrypt() {
        }
     });
 }
+
+function reverseEncrypt() {
+    var userInput = document.getElementById("user-input").value;
+    $.ajax({
+       type:'POST',
+       url:'api/reverseEncrypt',
+       data: {string: userInput},
+       dataType: 'JSON',
+       success:function(data){
+          alert(data.string);
+       }
+    });
+}
+
+function reverseDecrypt() {
+    var userInput = document.getElementById("user-input").value;
+    $.ajax({
+       type:'POST',
+       url:'api/reverseDecrypt',
+       data: {string: userInput},
+       dataType: 'JSON',
+       success:function(data){
+          alert(data.string);
+       }
+    });
+}
