@@ -48,7 +48,7 @@ class EncryptionController extends Controller
 
   public function reverseEncrypt(Request $request)
   {
-    $client = new \GuzzleHttp\Client(['base_uri' => 'http://backendtask.robustastudio.com/encode']);
+    $client = new \GuzzleHttp\Client();
     $res = $client->post('http://backendtask.robustastudio.com/encode', [
       'headers' => [
         'Content-Type' => 'application/json',
@@ -64,8 +64,8 @@ class EncryptionController extends Controller
 
   public function reverseDecrypt(Request $request)
   {
-    $client = new \GuzzleHttp\Client(['base_uri' => 'http://backendtask.robustastudio.com/decode']);
-    $res = $client->post('http://backendtask.robustastudio.com/encode', [
+    $client = new \GuzzleHttp\Client();
+    $res = $client->post('http://backendtask.robustastudio.com/decode', [
       'headers' => [
         'Content-Type' => 'application/json',
       ],

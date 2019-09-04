@@ -1,72 +1,50 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+// this is readme file to describe this Laravel web application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This application is designed to encode and decode strings.
 
-## About Laravel
+// application description
+  The application contain 3 types of encoding:
+    1- Shift Algorithm:
+      Encryption:
+        -This Algorithm use character dictionary and shift every letters by 3 letter taking in consideration the upper and lower Case.
+        -Characters out side the alphabets like (blank space, #, &, numbers etc.) remain the same.
+            this satisfy the example of encoding "Hello World" to become "Kroog Zruog" after encoding.
+      Decryption:
+        -This Algorithm reverse the effect of the encryption process by shifting the letter by 3 letters backward taking in consideration the upper and lower Case.
+        -The characters outside the alphabets are also stay as they are without changing.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    2- Matrix Algorithm:
+      Encryption:
+        -All characters from (blank space till "z") can be used in this Algorithm.
+        -We have 95 characters that we can use in this Algorithm every one has unique ascii.
+        -The smallest one has ascii of 32 which is the blank space and the largest ascii code is 127 and belongs to "z".
+        -For every 16 character they are taken into group and is multiplied by 16*16 matrix.
+        -If the group didn't contain enough characters to complete the last group into 16 a space will be added instead which means that        encryption of "a" will be the same of "a ".
+        -If there is blank space at the start or the end of the string it will be terminated as the objective is just decode the actual string.
+        -We have 94 character to represent the character after encrypting, every character will be encrypted into 2 of those 94 characters, the first character represent it's result after multiplying by the matrix divided by 94 then 33 is added so that the result fall in the ascii numbers that this 94 character represent. The second character represent the reminder of the division by 94 and also 33 is added so the it lies in the wanted ascii.   
+      Decryption:
+        -The string of the decryption shouldn't contain blank space as it was excluded from the encoding characters that can be used.
+        -It reverse the effect of the encoding process.
+        -As the encoding add blank space to complete the 16 needed character and the every character is represented by 2 character so the input string should always be multiply of 32 otherwise this isn't encrypted in a write way and can't be decrypted, Exception will be send in this case.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    3- Reverse Algorithm:
+      Encryption:
+        -This Encryption Algorithm is called from External api.
+      Encryption:
+        -This Decryption Algorithm is called from External api.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+// how to use the application ?
+    The application need Php and Laravel to be installed so that it can run.
+    the command can be run by running the command "php artisan serve" in the root folder through the cmd.
 
-## Learning Laravel
+    There is 6 end points api in this application, All of them are post api that take string as form-data.
+      1- http://127.0.0.1:8000/api/shiftEncrypt used to shift encrypt the string.
+      2- http://127.0.0.1:8000/api/shiftDecrypt used to shift decrypt the string.
+      3- http://127.0.0.1:8000/api/matrixEncrypt used to matrix encrypt the string.
+      4- http://127.0.0.1:8000/api/matrixDecrypt used to matrix decrypt the string.
+      5- http://127.0.0.1:8000/api/reverseEncrypt used to reverse encrypt the string.
+      6- http://127.0.0.1:8000/api/reverseDecrypt used to reverse decrypt the string.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    another way is open http://127.0.0.1:8000/ in google chrome and use the UI to encrypt and decrypt the strings.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    note: make sure that laravel run through 8000 port if it runs in another port make sure to change it in the mentiont urls.
