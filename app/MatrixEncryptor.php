@@ -51,7 +51,7 @@ class MatrixEncryptor implements Encryptor {
       }
 
       for ($x=0; $x < 16; $x++) {
-        $encrypted_string .= chr($encrypted_matrix[$x]/94 + 32) . chr($encrypted_matrix[$x] % 94 + 32);
+        $encrypted_string .= chr($encrypted_matrix[$x]/94 + 33) . chr($encrypted_matrix[$x] % 94 + 33);
       }
     }
 
@@ -62,6 +62,8 @@ class MatrixEncryptor implements Encryptor {
     if(trim($encryted_string) == "" || $encryted_string == null){
       return $encryted_string;
     }
+
+    $encryted_string = trim($encryted_string);
 
     if(strlen($encryted_string) % 32 > 0){
       throw new \Exception('This string does not match the requirements. Please, use the /matrixEncrypt api to correctly get the encrupted string');
@@ -174,7 +176,7 @@ class MatrixEncryptor implements Encryptor {
       $group_string = substr($encryted_string, $i*32, 32);
       $group_matrix = array();
       for($x=0; $x<strlen($group_string); $x +=2){
-        array_push($group_matrix, ((ord($group_string[$x])-32)*94) + (ord($group_string[$x+1])-32));
+        array_push($group_matrix, ((ord($group_string[$x])-33)*94) + (ord($group_string[$x+1])-33));
       }
 
       for ($y = 0; $y < 16; $y++) {
