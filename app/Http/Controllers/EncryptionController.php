@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ShiftEncryptor;
 use App\MatrixEncryptor;
+use GuzzleHttp\Client;
 
 class EncryptionController extends Controller
 {
@@ -43,5 +44,37 @@ class EncryptionController extends Controller
     }
 
     return response()->json(['success'=> true, 'string' => $decrypted_string]);
+  }
+
+  public function reverseEncrypt(Request $request)
+  {
+    $client = new \GuzzleHttp\Client(['base_uri' => 'http://backendtask.robustastudio.com/encode']);
+    $res = $client->post('http://backendtask.robustastudio.com/encode', [
+      'headers' => [
+        'Content-Type' => 'application/json',
+      ],
+      'json' => [
+        'string' => $request->input('string'),
+      ]
+    ]);
+
+    $result = json_decode($res->getBody()->getContents());
+    return response()->json($result);
+  }
+
+  public function reverseDecrypt(Request $request)
+  {
+    $client = new \GuzzleHttp\Client(['base_uri' => 'http://backendtask.robustastudio.com/decode']);
+    $res = $client->post('http://backendtask.robustastudio.com/encode', [
+      'headers' => [
+        'Content-Type' => 'application/json',
+      ],
+      'json' => [
+        'string' => $request->input('string'),
+      ]
+    ]);
+
+    $result = json_decode($res->getBody()->getContents());
+    return response()->json($result);
   }
 }

@@ -24,3 +24,7 @@ Route::POST('/shiftDecrypt', 'EncryptionController@shiftDecrypt');
 Route::POST('/matrixEncrypt', 'EncryptionController@matrixEncrypt');
 
 Route::POST('/matrixDecrypt', 'EncryptionController@matrixDecrypt');
+
+Route::POST('/reverseEncrypt', 'EncryptionController@reverseEncrypt');
+
+Route::POST('/reverseDecrypt', 'EncryptionController@reverseDecrypt');
