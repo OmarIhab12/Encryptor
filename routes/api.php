@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::POST('/shiftEncrypt', 'EncryptionController@shiftEncrypt');
 
 Route::POST('/shiftDecrypt', 'EncryptionController@shiftDecrypt');
+
+Route::POST('/matrixEncrypt', 'EncryptionController@matrixEncrypt');
+
+Route::POST('/matrixDecrypt', 'EncryptionController@matrixDecrypt');
